@@ -1,0 +1,106 @@
+@function pi() {
+    @return 3.14159265359;
+}
+
+@function pow($number, $exp) {
+    $value: 1;
+    @if $exp > 0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    } @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: $value / $number;
+        }
+    }
+    @return $value;
+}
+
+@function fact($number) {
+    $value: 1;
+    @if $number > 0 {
+        @for $i from 1 through $number {
+            $value: $value * $i;
+        }
+    }
+    @return $value;
+}
+
+@function rad($angle) {
+    $unit: unit($angle);
+    $unitless: $angle / ($angle * 0 + 1);
+    @if $unit == deg {
+        $unitless: $unitless / 180 * pi();
+    }
+    @return $unitless;
+}
+
+@function sin($angle) {
+    $sin: 0;
+    $angle: rad($angle);
+    @for $i from 0 through 10 {
+        $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    }
+    @return $sin;
+}
+
+@function cos($angle) {
+    $cos: 0;
+    $angle: rad($angle);
+    @for $i from 0 through 10 {
+        $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    }
+    @return $cos;
+}
+
+@function tan($angle) {
+    @return sin($angle) / cos($angle);
+}
+
+@mixin sector ($radius, $count, $color) {
+    $diameter: 2 * $radius;
+    position: relative;
+    width: $diameter;
+    height: $diameter;
+    border-radius: 50%;
+    overflow: hidden;
+    div {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: $radius solid transparent;
+        $borderWidth: tan(pi() / $count) * $radius;
+        border-left-width: $borderWidth;
+        border-right-width: $borderWidth;
+        border-top-color: $color;
+    }
+    @for $index from 0 to $count/2 {
+        div:nth-child(#{$index+1}) {
+            $transform: translate(-50%, 0) rotate($index*120deg);
+            $origin: center;
+            -webkit-transform: $transform;
+                    transform: $transform;
+            -webkit-transform-origin: $origin;
+                    transform-origin: $origin;
+        }
+    }
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#warning {
+    @include sector(100px, 6, yellow);
+    position: relative;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: black;
+
+}
