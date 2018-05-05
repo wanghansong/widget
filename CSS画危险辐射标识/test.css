@@ -1,44 +1,59 @@
+@charset "UTF-8";
+/* tan()函数是为了求扇形弧度长 */
+/* 用三角形模拟扇形，60°扇形底边和高相等  */
 html, body {
   width: 100%;
   height: 100%;
-  margin: 0; }
+  margin: 0;
+}
 
 #warning {
   position: relative;
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  /* 形成圆 */
   overflow: hidden;
   position: relative;
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: black; }
-  #warning div {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 100px solid transparent;
-    border-left-width: 57.735026919px;
-    border-right-width: 57.735026919px;
-    border-top-color: yellow; }
-  #warning div:nth-child(1) {
-    -webkit-transform: translate(-50%, 0) rotate(0deg);
-    transform: translate(-50%, 0) rotate(0deg);
-    -webkit-transform-origin: center;
-    transform-origin: center; }
-  #warning div:nth-child(2) {
-    -webkit-transform: translate(-50%, 0) rotate(120deg);
-    transform: translate(-50%, 0) rotate(120deg);
-    -webkit-transform-origin: center;
-    transform-origin: center; }
-  #warning div:nth-child(3) {
-    -webkit-transform: translate(-50%, 0) rotate(240deg);
-    transform: translate(-50%, 0) rotate(240deg);
-    -webkit-transform-origin: center;
-    transform-origin: center; }
+  background-color: black;
+}
 
+#warning div {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 100px solid transparent;
+  /* 算矩形半宽 */
+  border-left-width: 57.73503px;
+  border-right-width: 57.73503px;
+  border-top-color: yellow;
+  /* 矩形顶部才染颜色 */
+}
+
+#warning div:nth-child(1) {
+  -webkit-transform: translate(-50%, 0) rotate(0deg);
+  transform: translate(-50%, 0) rotate(0deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+#warning div:nth-child(2) {
+  -webkit-transform: translate(-50%, 0) rotate(120deg);
+  transform: translate(-50%, 0) rotate(120deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
+
+#warning div:nth-child(3) {
+  -webkit-transform: translate(-50%, 0) rotate(240deg);
+  transform: translate(-50%, 0) rotate(240deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
 /*# sourceMappingURL=test.css.map */

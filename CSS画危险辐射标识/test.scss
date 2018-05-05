@@ -53,16 +53,18 @@
     @return $cos;
 }
 
+/* tan()函数是为了求扇形弧度长 */
 @function tan($angle) {
     @return sin($angle) / cos($angle);
 }
 
+/* 用三角形模拟扇形，60°扇形底边和高相等  */
 @mixin sector ($radius, $count, $color) {
     $diameter: 2 * $radius;
     position: relative;
     width: $diameter;
     height: $diameter;
-    border-radius: 50%;
+    border-radius: 50%;/* 形成圆 */
     overflow: hidden;
     div {
         position: absolute;
@@ -71,10 +73,10 @@
         width: 0;
         height: 0;
         border: $radius solid transparent;
-        $borderWidth: tan(pi() / $count) * $radius;
+        $borderWidth: tan(pi() / $count) * $radius;/* 算矩形半宽 */
         border-left-width: $borderWidth;
         border-right-width: $borderWidth;
-        border-top-color: $color;
+        border-top-color: $color;/* 矩形顶部才染颜色 */
     }
     @for $index from 0 to $count/2 {
         div:nth-child(#{$index+1}) {
